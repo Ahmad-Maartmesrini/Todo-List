@@ -49,27 +49,28 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center bg-amber-400 px-5">
+      <h1 className="w-full my-5 font-bold text-2xl sm:text-3xl md:text-4xl md:my-5 lg:text-5xl">
+        <span className="text-blue-600">Web</span> To-Do List
+      </h1>
       <div className="w-full max-w-lg">
-        <h1 className="my-5 font-bold text-3xl md:text-4xl lg:text-4xl">
-          <span className="text-sky-700">TypeScript React</span> To-Do List
-        </h1>
-        <p>
-          Writing your daily tasks on a list can help you increase productivity
-          and decrease stress.
+        <p className=" text-black italic text-1xl">
+          Writing your daily tasks on a list can help you increase
+          <span className="text-blue-600 font-bold"> Productivity </span>
+          and decrease <span className=" line-through">stress</span>.
         </p>
-        <div className=" border-b-2"></div>
-        <form onSubmit={handleAddTask} className="my-5">
+        <div className="border-b-2 my-2  border-blue-600"></div>
+        <form onSubmit={handleAddTask} className="my-5 ">
           <input
             type="text"
-            className="border-l-2 border-b-2 border-sky-700 outline-none px-2 py-2 mx-2 my-2"
+            className="bg-inherit border-l-2 border-b-2 border-blue-600 outline-none px-2 py-2 mx-2 my-2 placeholder-black"
             value={taskInput}
             onChange={handleInputChange}
-            placeholder="Add a new task..."
+            placeholder="New task..."
           />
           <button
             type="submit"
-            className="border-r-2 border-t-2 border-sky-700 px-2 py-2"
+            className="border-r-2 border-t-2 border-blue-600 px-2 py-2"
           >
             Add
           </button>
@@ -79,25 +80,27 @@ function App() {
         {tasks.map((task) => (
           <li
             key={task.id}
-            className="flex items-center justify-between my-2 px-3 py-2 bg-white shadow-md rounded-md"
+            className="bg-inherit flex items-center justify-between border-l-2 border-b-2 border-blue-600 my-5 px-3 py-2"
           >
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => handleToggleTaskCompletion(task.id)}
-                className="mr-3 h-5 w-5"
-              />
-              <p
-                className={
-                  task.completed
-                    ? "line-through text-sm md:text-base lg:text-lg"
-                    : "text-sm md:text-base lg:text-lg"
-                }
-              >
-                {task.text}
-              </p>
-            </div>
+            <label className="flex items-center w-full cursor-pointer">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={task.completed}
+                  onChange={() => handleToggleTaskCompletion(task.id)}
+                  className="mr-2 h-4 w-4 outline-none border-0"
+                />
+                <p
+                  className={
+                    task.completed
+                      ? "line-through text-sm md:text-base lg:text-lg"
+                      : "text-sm md:text-base lg:text-lg"
+                  }
+                >
+                  {task.text}
+                </p>
+              </div>
+            </label>
             {task.completed && (
               <button
                 onClick={() => handleDeleteTask(task.id)}
