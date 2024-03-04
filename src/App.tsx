@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { nanoid } from "nanoid";
+import Hero from "./components/Hero";
 
 interface Task {
   id: string;
@@ -49,16 +50,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-amber-400 px-5">
-      <h1 className="w-full my-5 font-bold text-2xl sm:text-3xl md:text-4xl md:my-5 lg:text-5xl">
-        <span className="text-blue-600">Web</span> To-Do List
-      </h1>
+    <div className="w-full min-h-screen flex flex-col items-center bg-amber-400 p-5">
+      <Hero />
       <div className="w-full max-w-lg">
-        <p className=" text-black italic text-1xl">
-          Writing your daily tasks on a list can help you increase
-          <span className="text-blue-600 font-bold"> Productivity </span>
-          and decrease <span className=" line-through">stress</span>.
-        </p>
         <div className="border-b-2 my-2  border-blue-600"></div>
         <form onSubmit={handleAddTask} className="my-5 ">
           <input
