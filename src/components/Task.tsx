@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
+import finish from "../../public/win.wav";
+import del from "../../public/Poof.wav";
 
 interface Task {
   id: string;
@@ -13,6 +15,8 @@ const Task = () => {
     return storedTasks ? JSON.parse(storedTasks) : [];
   });
   const [taskInput, setTaskInput] = useState("");
+  const [finsishAudio] = useState(new Audio(finish));
+  const [deleteAudio] = useState(new Audio(del));
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -35,16 +39,33 @@ const Task = () => {
     }
   };
 
+  const playFinishSound = (shouldPlay: boolean) => {
+    if (shouldPlay) {
+      finsishAudio.currentTime = 0; // Reset the audio to the beginning
+      finsishAudio.play();
+    }
+  };
+
+  const playDeleteSound = () => {
+    deleteAudio.currentTime = 0; // Reset the audio to the beginning
+    deleteAudio.play();
+  };
+
   const handleToggleTaskCompletion = (taskId: string) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, completed: !task.completed } : task
     );
     setTasks(updatedTasks);
+    const completedTask = updatedTasks.find(
+      (task) => task.id === taskId
+    )?.completed;
+    playFinishSound(completedTask ?? false);
   };
 
   const handleDeleteTask = (taskId: string) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
+    playDeleteSound();
   };
 
   return (
