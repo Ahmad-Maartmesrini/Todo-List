@@ -8,24 +8,16 @@ const Hero = () => {
           </a>
         </h2>
         <div className="relative overflow-hidden cursor-pointer">
-          <a href="#" target="_blank" aria-label="Github">
+          <a
+            href="https://github.com/Ahmad-Maartmesrini/Todo-List"
+            target="_blank"
+            aria-label="Github"
+          >
             <button className="relative z-10 py-2 px-5 bg-[#000000] rounded-3xl text-[#fff]  border-transparent transition-colors hover:bg-transparent hover:text-[#000]">
               GitHub
             </button>
           </a>
         </div>
-        {/* <button
-          className="rounded-full border border-black bg-black py-1.5 px-5 text-sm text-white transition-all hover:bg-amber-400 hover:text-blue-600;"
-          type="button"
-          onClick={() =>
-            window.open(
-              "https://github.com/Ahmad-Maartmesrini/todo-list",
-              "_blank"
-            )
-          }
-        >
-          GitHub
-        </button> */}
       </nav>
       <div className="w-11/12 flex justify-center items-center flex-col">
         <h1 className="text-black italic text-4xl mb-2 md:text-6xl">
