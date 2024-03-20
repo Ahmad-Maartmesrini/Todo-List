@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
-import finish from "../../public/win.wav";
-import del from "../../public/Poof.wav";
+import finish from ".././assets/win.wav";
+import del from ".././assets/Poof.wav";
 
 interface Task {
   id: string;
