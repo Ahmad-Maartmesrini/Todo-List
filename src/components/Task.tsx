@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
-import finish from ".././assets/win.wav";
-import del from ".././assets/Poof.wav";
+import finish from ".././assets/win.mp3";
+import del from ".././assets/whoosh.mp3";
 import add from ".././assets/add.mp3";
 
 interface Task {
@@ -38,23 +38,22 @@ const Task = () => {
       };
       setTasks([...tasks, newTask]);
       setTaskInput("");
+      playAddSound();
     }
   };
 
   const playFinishSound = (shouldPlay: boolean) => {
     if (shouldPlay) {
-      finsishAudio.currentTime = 0; // Reset the audio to the beginning
+      // finsishAudio.currentTime = 0;  Reset the audio to the beginning
       finsishAudio.play();
     }
   };
 
   const playDeleteSound = () => {
-    deleteAudio.currentTime = 0; // Reset the audio to the beginning
     deleteAudio.play();
   };
 
   const playAddSound = () => {
-    addAudio.currentTime = 0;
     addAudio.play();
   };
 
@@ -86,11 +85,11 @@ const Task = () => {
             value={taskInput}
             onChange={handleInputChange}
             placeholder="New task..."
+            required
           />
           <button
             type="submit"
             className="border-r-2 border-t-2 border-blue-600 px-2 py-2"
-            onClick={playAddSound}
           >
             Add
           </button>
