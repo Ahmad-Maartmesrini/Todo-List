@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import finish from ".././assets/win.wav";
 import del from ".././assets/Poof.wav";
+import add from ".././assets/add.mp3";
 
 interface Task {
   id: string;
@@ -17,6 +18,7 @@ const Task = () => {
   const [taskInput, setTaskInput] = useState("");
   const [finsishAudio] = useState(new Audio(finish));
   const [deleteAudio] = useState(new Audio(del));
+  const [addAudio] = useState(new Audio(add));
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -51,6 +53,11 @@ const Task = () => {
     deleteAudio.play();
   };
 
+  const playAddSound = () => {
+    addAudio.currentTime = 0;
+    addAudio.play();
+  };
+
   const handleToggleTaskCompletion = (taskId: string) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, completed: !task.completed } : task
@@ -83,6 +90,7 @@ const Task = () => {
           <button
             type="submit"
             className="border-r-2 border-t-2 border-blue-600 px-2 py-2"
+            onClick={playAddSound}
           >
             Add
           </button>
